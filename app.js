@@ -1,5 +1,6 @@
 const express = require('express')
 const api = require('./routes/index')
+const path = require('path')
 
 const app = express()
 
@@ -18,12 +19,16 @@ app.get('/', (req,res) => {
 })
 
 // Historical results
-app.get('/history', () => {
+app.get('/history', (req,res) => {
     // Blah
+    res.sendFile(path.join(__dirname,'/public/history.html'))
+
 })
 
 // 404
-app.get('*',() => {
+app.get('*',(req,res) => {
     // Blah
     res.sendFile(path.join(__dirname,'/public/404.html'))
 })
+
+module.exports = app;
